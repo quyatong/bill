@@ -4,8 +4,10 @@
  */
 
 var express = require('express');
-var routes = require('./routes');
-var user = require('./routes/user');
+var routes = {
+	record: require('./routes/record'),
+	user: require('./routes/user')
+};
 var http = require('http');
 var path = require('path');
 
@@ -27,9 +29,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
+app.get('/', routes.record.index);
+app.get('/record/add', routes.record.add);
 
-app.get('/', routes.index);
-app.get('/users', user.list);
+app.get('/user/list', routes.user.list);
+app.get('/user/add/:name?', routes.user.add);
+app.get('/user/remove/:id?', routes.user.remove);
+app.get('/user/edit/:id/:name', routes.user.edit);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
