@@ -1,5 +1,8 @@
 var ejson = require('../tools/ejson');
+var _ = require('underscore');
+var EventProxy = require('eventproxy');
 var recordAction = require('../action/record');
+var userAction = require('../action/user');
 var record = {};
 
 /**
@@ -22,7 +25,7 @@ record.add = function (req, res) {
     var time = params.time;
 
     // 消费者
-    var customers = params.customers;
+    var customers = JSON.parse(params.customers);
 
     // 事由
     var comment = params.comment;
@@ -42,14 +45,40 @@ record.add = function (req, res) {
  * @param  {Object} req request
  * @param  {Object} res response
  */
-record.index = function (req, res) {
-    recordAction.list().then(function (records) {
+record.list = function (req, res) {
+    recordAction.list().then(function (data) {
         res.send(ejson.format({
-            data: {
-                records: records
-            }
+            data: data
         })); 
     });
+};
+
+/**
+ * 删除
+ * 
+ * @param  {Object} req request
+ * @param  {Object} res response
+ */
+record.remove = function (req, res) {
+    var id = req.params.id;
+
+    recordAction.remove(id).then(function () {
+        res.send(ejson.format()); 
+    });
+};
+
+/**
+ * 页面展现
+ * 
+ * @param  {Object} req request
+ * @param  {Object} res response
+ */
+record.index = function (req, res) {
+
+    recordAction.list().then(function (data) {
+            res.render('index', data);
+        }
+    );
 };
 
 module.exports = record;

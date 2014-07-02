@@ -1,5 +1,81 @@
 <%include header%>
-<%= records%>
+<link rel="stylesheet" type="text/css" href="/src/home/index.css">
+<br/> 
 
+<form id="bill-form" action="post">
+    <table>
+        <tbody>
+            <tr>
+                <td class="title">出钱者:</td>
+                <td class="content">
+                    <select id="outMan">
+                    <%for (var i = 0; i < users.length; i++) {%>
+                        <option value="<%= users[i]._id%>"><%= users[i].name%></option>
+                    <%}%>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">出钱数：</td>
+                <td class="content">
+                    <input id="money" type="number" /> 元
+                </td>
+            </tr>
+            <tr>
+                <td class="title">时间</td>
+                <td class="content">
+                    <input id="time" type="date" />
+                </td>
+            </tr>
+            <tr>
+                <td class="title">备注：</td>
+                <td class="content">
+                    <textarea id="comment" cols="30" rows="10"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td class="title customer-title">消费者：</td>
+                <td class="content customer-container">
+                    <%for (var i = 0; i < users.length; i++) {%>
+                    <label value="<%= users[i]._id%>"><input type="checkbox" value="<%= users[i]._id%>" /><%= users[i].name%><div class="close-btn">x</div></label>
+                    <%}%>
+                    <div id="btn-add-area" style="display: none">
+                        <input id="user-name" type="text"/>
+                        <button id="btn-add-confirm">确定</button>
+                        <button id="btn-add-cancel">取消</button>
+                    </div>
+                    <button id="btn-add">添加</button>
+                </td>
+            </tr>
+            <tr>
+                <td class="title"></td>
+                <td class="content">
+                    <input type="submit" value="提交"/>
+                    <input type="reset" value="清空">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+
+<!--结果容器-->
+<div id="result">
+<%include result%>
+</div>
+
+<!--结果容器-->
+<script id="result-tpl" type="text/template">
+<%include tpl/result%>
+</script>
+
+<%include script%>
+
+<button class="btn">repaint</button>
+
+<script type="text/javascript">
+    require(['src/home/index'], function (index) {
+        index.enter();
+    });
+</script>
 
 <%include footer%>
