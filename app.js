@@ -5,10 +5,10 @@
 require('./config/template');
 var express = require('express');
 var routes = {
+	index: require('./routes/index'),
 	record: require('./routes/record'),
 	user: require('./routes/user')
 };
-var http = require('http');
 var path = require('path');
 
 
@@ -30,8 +30,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
-app.get('/', routes.record.index);
+
+app.get('/record/index', routes.record.index);
 app.get('/record/list', routes.record.list);
+
+app.get('/', routes.index.index);
+app.get('/index.tmpl', routes.index.tmpl)
+
+app.get('/record', routes.record.index);
 app.get('/record/add', routes.record.add);
 app.get('/record/remove/:id?', routes.record.remove);
 
@@ -40,6 +46,6 @@ app.get('/user/add/:name?', routes.user.add);
 app.get('/user/remove/:id?', routes.user.remove);
 app.get('/user/edit/:id/:name', routes.user.edit);
 
-http.createServer(app).listen(app.get('port'), function(){
+app.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
