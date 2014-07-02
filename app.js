@@ -29,7 +29,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
-app.get('/', routes.index)
+app.get('/', routes.index.index);
+app.get('/index.tmpl', routes.index.tmpl)
 app.get('/record', routes.record.index);
 app.get('/record/add', routes.record.add);
 
