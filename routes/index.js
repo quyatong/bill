@@ -15,7 +15,7 @@ module.exports = function(req, res) {
 			if (err) {
 				return console.error(err);
 			}
-	  		res.render('index', {records: records.toString()});
+	  	res.render('index', {records: records.toString()});
 		});
 	});
 }; 

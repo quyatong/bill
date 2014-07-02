@@ -2,6 +2,7 @@ var when = require('when');
 var _ = require('underscore');
 var dbHelper = require('../tools/dbHelper');
 var User = require('../model/user');
+var Record = require('../model/record')
 var EventProxy = require('eventproxy');
 var record = {};
 
@@ -83,7 +84,7 @@ record.list = function () {
         });
 
 
-        User.find({}, function (error, users) {
+        User.find({}, function (err, users) {
 
             if (err) {
                 return console.error(err);
