@@ -1,8 +1,9 @@
 var when = require('when');
 var _ = require('underscore');
+var clone = require('clone');
 var dbHelper = require('../tools/dbHelper');
 var User = require('../model/user');
-var Record = require('../model/record')
+var Record = require('../model/record');
 var EventProxy = require('eventproxy');
 var record = {};
 
@@ -55,44 +56,78 @@ record.list = function () {
 
     dbHelper.open().then(function () {
 
-        var ep = EventProxy.create('records', 'users', function (records, users) {
+        // 事件代理
+        var ep = EventProxy.create(
+            'records', 'users', 
+            function (records, users) {
 
-            _.each(records, function (record) {
-
-                record.outerMan = _.findWhere(users, {_id: record.outerId});
-                record.customerNames = [];
-
-                _.each(record.customers, function (id) {
-                    record.customerNames.push(
-                        _.findWhere(users, {_id: id})
-                    );
+                _.each(records, function (record) {
+                    var customers = clone(users);
+                    record.outerMan = _.find(users, function (user) {
+                        return user._id + '' == record.outerId + '';
+                    });
+                    _.each(record.customers, function (customerId) {
+                        _.each(customers, function (customer) {
+                            if (customer._id + '' == customerId) {
+                                customer['consume'] = true;
+                            }
+                        });
+                    });
+                    record.customers = customers;
                 });
-            });
+                console.log(records);
+                promise.resolve({
+                    records: records, 
+                    users: users
+                });
+            }
+        );
 
-            promise.resolve(records);
-        });
-
+        // 查询所有records
         Record.find({}, function (err, records) {
 
             if (err) {
                 return console.error(err);
             }
 
-            records = _.each(records, function (item) {return item.toJSON();});
+            records = _.each(records, function (item, index) {records[index] = item.toJSON();});
 
             ep.emit('records', records);
         });
 
-
+        // 查询所有用户
         User.find({}, function (err, users) {
 
             if (err) {
                 return console.error(err);
             }
 
-            users = _.each(users, function (item) {return item.toJSON();});
+            users = _.each(users, function (item, index) {users[index] = item.toJSON();});
            
             ep.emit('users', users);
+        });
+    });
+
+    return promise.promise;
+};
+
+/**
+ * 删除对应记录
+ * 
+ * @param  {number}   id id
+ * @return {Promise}     Promise
+ */
+record.remove = function (id) {
+    var promise = when.defer();
+
+    dbHelper.open().then(function () {
+
+        Record.remove({_id: id}, function (err) {
+            if (err) {
+                return console.error(err);
+            }
+
+            promise.resolve();
         });
     });
 

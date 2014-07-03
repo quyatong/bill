@@ -6,6 +6,7 @@
     "start": "node app.js"
   },
   "dependencies": {
+    "clone": "^0.1.17",
     "ejs": "^1.0.0",
     "eventproxy": "^0.3.1",
     "express": "3.4.4",

@@ -2,7 +2,7 @@
 /**
  * Module dependencies.
  */
-
+require('./config/template');
 var express = require('express');
 var routes = {
 	index: require('./routes/index'),
@@ -10,6 +10,7 @@ var routes = {
 	user: require('./routes/user')
 };
 var path = require('path');
+
 
 var app = express();
 
@@ -29,10 +30,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
+
+app.get('/record/index', routes.record.index);
+app.get('/record/list', routes.record.list);
+
 app.get('/', routes.index.index);
 app.get('/index.tmpl', routes.index.tmpl)
+
 app.get('/record', routes.record.index);
 app.get('/record/add', routes.record.add);
+app.get('/record/remove/:id?', routes.record.remove);
 
 app.get('/user/list', routes.user.list);
 app.get('/user/add/:name?', routes.user.add);

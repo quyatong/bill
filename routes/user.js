@@ -77,10 +77,10 @@ user.remove = function (req, res) {
  */
 user.list = function (req, res) {
     userAction.findName(/.*/g).then(
-        function () {
+        function (userInfo) {
             success(res, userInfo);
         }, 
-        function () {
+        function (userInfo) {
             success(res, userInfo);
         }
     );
