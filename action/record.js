@@ -99,8 +99,8 @@ record.list = function () {
                         });
                     });
 
-                    var user = _.findWhere(incomes, {_id: record.outerMan._id});
-                    if (user) {
+                    if (record.outerMan) {
+                        var user = _.findWhere(incomes, {_id: record.outerMan._id});
                         user.summary = user.summary - money;
                     }
 
