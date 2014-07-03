@@ -26,8 +26,8 @@ select {padding:5px;}
 .form {position:relative;display:block;}
 .form .txt {width:220px;height:22px;line-height:22px;border-radius:0;}
 .form textarea {width:220px;}
-.fmd {position:relative;margin:0 0 15px 0;padding-left:100px;}
-.fmd .label {display:block;width:130px;padding:5px 0;margin:0 0 -31px -140px;text-align:right;white-space:nowrap;}
+.fmd {position:relative;margin:0 0 15px 0;padding-left:65px;}
+.fmd .label {display:block;width:60px;padding:5px 0;margin:0 0 -31px -65px;white-space:nowrap;}
 .fmd .nm {display:inline-block;height:31px;line-height:31px;margin-right:10px;vertical-align:middle;}
 .nm input {vertical-align:middle;margin-right:5px;}
 

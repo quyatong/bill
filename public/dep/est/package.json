@@ -1,27 +1,43 @@
 {
     "name": "est",
-    "version": "1.2.1",
-    "contributors": [
+    "description": "Embedthis Security Transport",
+    "title": "Embethis EST",
+    "version": "0.6.2",
+    "keywords": [
+        "est",
+        "ssl",
+        "tls"
+    ],
+    "author": {
+        "name": "Embedthis Software",
+        "email": "dev@embedthis.com",
+        "url": "http://embedthis.com"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/embedthis/est.git"
+    },
+    "bugs": {
+        "email": "dev@embedthis.com",
+        "url": "http://github.com/embedthis/est/issues"
+    },
+    "licenses": [
         {
-            "name": "justineo",
-            "email": "justice360@gmail.com"
+            "type": "GPL",
+            "url": "http://www.gnu.org/licenses/gpl-2.0.html"
         },
         {
-            "name": "zmmbreeze",
-            "email": "zmmbreeze0825@gmail.com"
-        },
-        {
-            "name": "firede",
-            "email": "firede@firede.us"
+            "type": "Commercial",
+            "url": "http://embedthis.com/licensing/"
         }
     ],
-    "repository": {
-        "type" : "git",
-        "url" : "https://github.com/ecomfe/est.git"
+    "pak": "~0.9",
+    "dependencies": {
+        "me-dev": "~0.8",
+        "me-ssl": "~0.8",
+        "osdep": "~0.8"
     },
-    "description": "ECOM Styling Toolkit",
-    "homepage": "http://ecomfe.github.io/est/",
-    "devDependencies": {
-        "less": "~1.6.3"
+    "directories": {
+        "paks": "src/paks"
     }
 }

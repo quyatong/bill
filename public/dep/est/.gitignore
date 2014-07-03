@@ -1,3 +1,35 @@
-node_modules
-.npmignore
-npm-debug.log
+# Object files
+*.o
+
+# Libraries
+*.lib
+*.a
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+*-debug
+*-*.bit
+releases
+*-release
+.*.swp
+start.bit
+<<<<<<< HEAD
+=======
+*-mine
+projects/est-macosx-mine*
+*.guid
+>>>>>>> dev
+doc/api/xml
+doc/api/html
+start.me
+macosx-x64*
+start.me
+macosx-*.me

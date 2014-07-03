@@ -9,7 +9,6 @@
     "commit": "4f9fbc756ccefbb4760b7d7c0e2db51e507e09ef"
   },
   "_source": "git://github.com/visionmedia/ejs.git",
-  "_target": "~1.0.0",
-  "_originalSource": "ejs",
-  "_direct": true
+  "_target": "1.0.0",
+  "_originalSource": "ejs"
 }

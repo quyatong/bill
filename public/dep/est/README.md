@@ -1,38 +1,49 @@
-est (ECOM Styling Toolkit)
+Embedded Security Transport (SSL)
 ===
 
-> From Middle English este, from Old English ēst (“will, consent, favour, grace, liberality, munificence, bounty, kindness, love, good pleasure, harmony, liberal gifts, luxuries”)
+Licensing
+---
+See LICENSE.md for details.
 
-*est 是一个基于 LESS 的样式工具库，帮助您更轻松地书写 LESS 代码。*
+### To Read Documentation:
 
-est 提供了一系列方便快捷的 [mixin](http://lesscss.org/#-mixins)，只在调用时才输出代码。est 不希望提供直接给 HTML 调用的类名，用「样式类」污染 HTML 代码的语义。当然您也可以根据自己的项目需求基于 est 搭建样式类库，提供类名接口来进行快速开发。
+  See doc/index.html
 
-## 快速开始
+### Prerequisites:
+    MakeMe (http://embedthis.com/downloads/makeme/download.esp) for MakeMe to configure and build.
 
-下载最新稳定版本：
-[.zip](https://github.com/ecomfe/est/archive/master.zip) 或 [.tar.gz](https://github.com/ecomfe/est/archive/master.tar.gz)
+### To Build:
 
-或clone最新稳定版：
+    ./configure
+    me
 
-```bash
-$ git clone https://github.com/ecomfe/est.git
-```
+    Alternatively to build without Ejscript:
 
-在 LESS 代码中引用、配置。
-```less
-// quick import
-@import 'est/src/all.less';
+    make
 
-// override global variables
-@support-old-ie: false;
-@default-font-size: 14px;
+Images are built into */bin. The build configuration is saved in */inc/me.h.
 
-// ...your own awesome less code starts here...
-```
+### To Test:
 
-## 文档
+    me test
 
-* [API说明](http://ecomfe.github.io/est/)
-* [Typography相关示例](http://ecomfe.github.io/est/example/typography.html)
-* [Effects相关示例](http://ecomfe.github.io/est/example/effects.html)
+### To Run:
 
+    me run
+
+This will run appweb in the src/server directory using the src/server/appweb.conf configuration file.
+
+### To Install:
+
+    me install
+
+### To Create Packages:
+
+    me package
+
+Resources
+---
+  - [Embedthis web site](http://embedthis.com/)
+  - [Appweb web site](http://appwebserver.org/)
+  - [MPR GitHub repository](http://github.com/embedthis/mpr)
+  - [Appweb GitHub repository](http://github.com/embedthis/appweb)
