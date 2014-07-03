@@ -60,23 +60,42 @@ record.list = function () {
         var ep = EventProxy.create(
             'records', 'users', 
             function (records, users) {
+                var summarys = clone(users);
+
+                _.each(summarys, function (user) {
+                    user.summary = 0;
+                });
 
                 _.each(records, function (record) {
                     var customers = clone(users);
+                    var consumerNum = record.customers.length;
+                    var money = record.money;
+                    var avgPrice = (money / consumerNum).toFixed(2);
+
                     record.outerMan = _.find(users, function (user) {
                         return user._id + '' == record.outerId + '';
                     });
+
                     _.each(record.customers, function (customerId) {
                         _.each(customers, function (customer) {
                             if (customer._id + '' == customerId) {
                                 customer['consume'] = true;
+                                var summary = _.findWhere(summarys, {_id: customerId});
+
+                                if (summary) {
+                                    summary.summary += avgPrice;
+                                }
                             }
                         });
                     });
                     record.customers = customers;
                 });
+
+
+
                 promise.resolve({
-                    records: records, 
+                    records: records,
+                    summarys: summarys,
                     users: users
                 });
             }
@@ -89,7 +108,10 @@ record.list = function () {
                 return console.error(err);
             }
 
-            records = _.each(records, function (item, index) {records[index] = item.toJSON();});
+            records = _.each(records, function (item, index) {
+                records[index] = item.toJSON();
+                records[index]._id = records[index]._id + '';
+            });
 
             ep.emit('records', records);
         });
@@ -101,7 +123,10 @@ record.list = function () {
                 return console.error(err);
             }
 
-            users = _.each(users, function (item, index) {users[index] = item.toJSON();});
+            users = _.each(users, function (item, index) {
+                users[index] = item.toJSON();
+                users[index]._id = users[index]._id + '';
+            });
            
             ep.emit('users', users);
         });
