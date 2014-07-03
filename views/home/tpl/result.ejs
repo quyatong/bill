@@ -35,8 +35,11 @@
             <td></td>
             <td></td>
             {% for (var i = 0; i < summarys.length; i++) { %}
-            <td>{%= summarys[i].summary%}</td>
+            <td class="{% if (summarys[i].summary > 0) { %}expend{% } else if (summarys[i].summary < 0) {%}income{% } %}">
+            {%= summarys[i].summary%}
+            </td>
             {% } %}
+            <td></td>
         </tr>
     </tbody>
 </table>

@@ -5,12 +5,7 @@
     margin: 0;
 }
 body {
-    background: linear-gradient(to bottom, rgba(255, 0, 0, 0.30000000000000004), rgba(255, 165, 0, 0.30000000000000004)) repeat 0 0, url("http://subtlepatterns.subtlepatterns.netdna-cdn.com/patterns/bright_squares.png") repeat 0 0 transparent;
     font: 12px/1 arial,"\5b8b\4f53",sans-serif;
-}
-
-body {
-
 }
 
 table {
@@ -25,119 +20,132 @@ table {
     width: 80px;
 }
 
-.content {
-    vertical-align: top;
-    line-height: 36px;
+#bill-form {
+    padding: 15px;
+    background-color: #fff;
 
-    label {
-        width: 98px;
-        line-height: 20px;
-        float: left;
-        height: 20px;
-        border: solid 1px transparent;
-        margin-bottom: 8px;
-        cursor: pointer;
-        padding-left: 5px;
-        padding-right: 15px;
-        overflow: hidden;
-        word-spacing: no-wrap;
-        position: relative;
-    }
-    label:hover {
-        border: solid 1px #ccc;
-        background-color: #eee; 
-    }
-    label input {
-        vertical-align: -3px;
-        margin-right: 5px;
-    }
+    .content {
+        vertical-align: top;
+        line-height: 36px;
 
-    label {
-        .close-btn {
-            font-size: 13px;
-            float: right;
-            height: 13px;
-            line-height: 11px;
-            width: 13px;
+        label {
+            width: 98px;
+            line-height: 20px;
+            float: left;
+            height: 20px;
+            border: solid 1px transparent;
+            margin-bottom: 8px;
+            cursor: pointer;
+            padding-left: 5px;
+            padding-right: 15px;
+            overflow: hidden;
+            word-spacing: no-wrap;
+            position: relative;
+        }
+        label:hover {
             border: solid 1px #ccc;
-            text-align: center;
-            position: absolute;
-            right: 4px;
-            top: 2px;
-            font-family: inherit;
-            background-color: #ddd;
-            color: #666;
-            display: none;
+            background-color: #eee; 
+        }
+        label input {
+            vertical-align: -3px;
+            margin-right: 5px;
         }
 
-        &:hover {
+        label {
             .close-btn {
-                display: block;
+                font-size: 13px;
+                float: right;
+                height: 13px;
+                line-height: 11px;
+                width: 13px;
+                border: solid 1px #ccc;
+                text-align: center;
+                position: absolute;
+                right: 4px;
+                top: 2px;
+                font-family: inherit;
+                background-color: #ddd;
+                color: #666;
+                display: none;
+            }
+
+            &:hover {
+                .close-btn {
+                    display: block;
+                }
             }
         }
     }
-}
 
-.customer-title {
-    line-height: 20px;
-}
-
-.customer-container {
-    input,
-    button {
-        vertical-align: 6px;
+    .customer-title {
+        line-height: 20px;
     }
-}
 
-#user-name {
-    width: 90px;
-}
+    .customer-container {
+        input,
+        button {
+            vertical-align: 6px;
+        }
+    }
 
-#outMan {
-    width: 143px;
-}
+    #user-name {
+        width: 90px;
+    }
 
-#money {
-    width: 124px;
-}
+    #outMan {
+        width: 143px;
+    }
 
-#time {
+    #money {
+        width: 124px;
+    }
 
-}
+    #time {
 
-#comment {
-    height: 50px;
-}
+    }
 
-#btn-add-area {
-    float: left;
-}
+    #comment {
+        height: 50px;
+    }
 
-#result th {
-    background-color: #eee;
+    #btn-add-area {
+        float: left;
+    }
+
 }
 
 #result {
-    margin: 0 auto;
-    width: 800px;
+    margin: 0 15px;
     border: solid 1px #ccc;
     overflow: auto;
-
+    background-color: #fff;
+    table {
+        width: 100%;
+    }
     th,
     td {
         height: 30px;
         line-height: 30px;
         max-height: 30px;
         text-align: center;
-        width: 100px;
-        max-width: 100px;
+        width: 60px;
+        max-width: 60px;
         overflow: hidden;
-        min-width: 100px;
+        min-width: 60px;
         border: solid 1px #ccc;
         text-overflow: ellipsis;
         white-space: nowrap;
     }
 
+    th {
+        background-color: #eee;
+        border-top: none;
+    }
+    .time-col {
+        width: 90px;
+        max-width: 90px;
+        min-width: 90px;
+    }
     .user-consume {
         background-color: red;
     }
@@ -147,7 +155,7 @@ table {
     } 
     
     .last-col { 
-        border-right: none; 
+        border-right: none;
     } 
 
     .record-delete {
@@ -157,11 +165,13 @@ table {
             text-decoration: underline;
         }
     }
+
     .expend {
         background-color: red;
+        color: #fff;
     }
     .income {
         background-color: #54f839;
+        color: red;
     }
 }
-
