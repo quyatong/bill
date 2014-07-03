@@ -21,22 +21,19 @@ app.set('view engine', 'ejs');
 
 var lessMiddleware = require('less-middleware');
 
-app.use(lessMiddleware(__dirname + '/public'));
-app.use(express.static(__dirname + '/public'));
-
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(app.router);
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(lessMiddleware(__dirname + '/public'));
+app.use(express.static(__dirname + '/public'));
 
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
-
 
 app.get('/', routes.home.index);
 app.get('/index.tmpl', routes.home.tmpl)
