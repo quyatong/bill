@@ -100,7 +100,9 @@ record.list = function () {
                     });
 
                     var user = _.findWhere(incomes, {_id: record.outerMan._id});
-                    user.summary = user.summary - money;
+                    if (user) {
+                        user.summary = user.summary - money;
+                    }
 
                     record.customers = customers;
                 });
