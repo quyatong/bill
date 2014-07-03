@@ -75,7 +75,8 @@ record.remove = function (req, res) {
  */
 record.index = function (req, res) {
 
-    recordAction.list().then(function (data) {
+    recordAction.list().then(
+        function (data) {
             res.render('index', data);
         }
     );

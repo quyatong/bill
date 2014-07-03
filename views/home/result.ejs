@@ -29,5 +29,14 @@
         </td>
         </tr>
         <% } %>
+        <tr>
+            <td class="first-col">汇总</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <% for (var i = 0; i < summarys.length; i++) { %>
+            <td><%= summarys[i].summary%></td>
+            <% } %>
+        </tr>
     </tbody>
 </table>

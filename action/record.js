@@ -60,9 +60,18 @@ record.list = function () {
         var ep = EventProxy.create(
             'records', 'users', 
             function (records, users) {
-                var summarys = clone(users);
 
-                _.each(summarys, function (user) {
+                // 支出
+                var expents = clone(users);
+
+                // 收入
+                var incomes = clone(users)
+
+                _.each(expents, function (user) {
+                    user.summary = 0;
+                });
+
+                _.each(incomes, function (user) {
                     user.summary = 0;
                 });
 
@@ -70,28 +79,38 @@ record.list = function () {
                     var customers = clone(users);
                     var consumerNum = record.customers.length;
                     var money = record.money;
-                    var avgPrice = (money / consumerNum).toFixed(2);
+                    var avgPrice = money / consumerNum;
 
                     record.outerMan = _.find(users, function (user) {
                         return user._id + '' == record.outerId + '';
                     });
 
                     _.each(record.customers, function (customerId) {
+
                         _.each(customers, function (customer) {
                             if (customer._id + '' == customerId) {
-                                customer['consume'] = true;
-                                var summary = _.findWhere(summarys, {_id: customerId});
 
-                                if (summary) {
-                                    summary.summary += avgPrice;
-                                }
+                                customer['consume'] = true;
+
+                                // 计算消费
+                                var user = _.findWhere(expents, {_id: customerId});
+                                user.summary = user.summary + avgPrice;
                             }
                         });
                     });
+
+                    var user = _.findWhere(incomes, {_id: record.outerMan._id});
+                    user.summary = user.summary - money;
+
                     record.customers = customers;
                 });
 
-
+                // 支出 + 收入汇总
+                var summarys = incomes;
+                for (var i = 0; i < incomes.length; i++) {
+                    summarys[i].summary += expents[i].summary;
+                    summarys[i].summary.toFixed(2);
+                };
 
                 promise.resolve({
                     records: records,
