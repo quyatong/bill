@@ -75,7 +75,6 @@ record.list = function () {
                     });
                     record.customers = customers;
                 });
-                console.log(records);
                 promise.resolve({
                     records: records, 
                     users: users
