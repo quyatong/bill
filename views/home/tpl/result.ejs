@@ -2,7 +2,7 @@
     <thead>
         <th class="first-col">出钱人</th>
         <th>出钱数</th>
-        <th>时间</th>
+        <th class="time-col">时间</th>
         <th>备注</th>
         {% for (var i = 0; i < users.length; i++)  {%}
         <th>{%= users[i].name %}</th>
@@ -14,8 +14,8 @@
         <tr>
         <td class="first-col">{%= (records[i].outerMan && records[i].outerMan.name) || '' %}</td>
         <td>{%= records[i].money || ''%}</td>
-        <td>{%= records[i].time || ''%}</td>
-        <td>{%= records[i].comment || '' %}</td>
+        <td class="time-col">{%= records[i].time || ''%}</td>
+        <td title="{%= records[i].comment || ''%}">{%= records[i].comment || '' %}</td>
         {% for (var j = 0; j < records[i].customers.length; j++) { %}
             {% if (records[i].customers[j].consume) {%}
             <td class="user-consume">

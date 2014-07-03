@@ -16,6 +16,8 @@
     "tests"
   ],
   "dependencies": {
-    "xdate": "~0.8.1"
+    "xdate": "~0.8.1",
+    "ejs": "~1.0.0",
+    "est": "https://github.com/ecomfe/est.git#~1.2.1"
   }
 }
