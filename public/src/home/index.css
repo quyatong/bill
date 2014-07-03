@@ -22,8 +22,8 @@ table {
 .content {
     vertical-align: top;
     line-height: 36px;
-    width: 720px;
 }
+
 .content label {
     width: 98px;
     line-height: 20px;
@@ -70,13 +70,35 @@ table {
 .customer-title {
     line-height: 20px;
 }
+
 .customer-container input,
 .customer-container button {
     vertical-align: 6px;
 }
+
 #user-name {
     width: 90px;
 }
+
+#outMan {
+    width: 143px;
+}
+
+#money {
+    width: 124px;
+}
+
+#time {
+
+}
+
+#comment {
+    height: 50px;
+}
+#btn-add-area {
+    float: left;
+}
+
 #result th {
     background-color: #eee;
 }
@@ -110,24 +132,6 @@ table {
     border-right: none; 
 } 
 
-#outMan {
-    width: 143px;
-}
-
-#money {
-    width: 124px;
-}
-
-#time {
-
-}
-
-#comment {
-    height: 50px;
-}
-#btn-add-area {
-    float: left;
-}
 
 .record-delete {
     cursor: pointer;

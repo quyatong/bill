@@ -5,7 +5,7 @@
 require('./config/template');
 var express = require('express');
 var routes = {
-	index: require('./routes/index'),
+	home: require('./routes/home'),
 	record: require('./routes/record'),
 	user: require('./routes/user')
 };
@@ -18,6 +18,12 @@ var app = express();
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+var lessMiddleware = require('less-middleware');
+
+app.use(lessMiddleware(__dirname + '/public'));
+app.use(express.static(__dirname + '/public'));
+
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.json());
@@ -31,11 +37,13 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+
+app.get('/', routes.home.index);
+app.get('/index.tmpl', routes.home.tmpl)
+
+
 app.get('/record/index', routes.record.index);
 app.get('/record/list', routes.record.list);
-
-app.get('/', routes.index.index);
-app.get('/index.tmpl', routes.index.tmpl)
 
 app.get('/record', routes.record.index);
 app.get('/record/add', routes.record.add);
