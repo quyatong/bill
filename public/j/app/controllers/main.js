@@ -6,8 +6,19 @@ define(['angular'], function(angular) {
 
 	ctrls.controller('index', [
 		'$scope',
-		function($scope) {
-			//...
+		'records',
+		function($scope, records) {
+
+			$scope.data = records.data.data;
+
+			$scope.customers = angular.copy($scope.data.users);
+
+			$scope.addRecord = function(e) {
+				e.preventDefault();
+				console.log($scope.newRecord);
+				console.log($scope)
+			};
+
 		}
 	]);
 

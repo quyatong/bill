@@ -1,0 +1,205 @@
+@import '../../dep/est/src/all';
+
+.global-reset();
+
+html {
+    padding-top: 68px;
+    background: linear-gradient(263deg, rgba(255, 0, 0, 0.30000000000000004), rgba(255, 165, 0, 0.30000000000000004), rgba(255, 255, 0, 0.30000000000000004), rgba(0, 128, 0, 0.30000000000000004), rgba(135, 206, 235, 0.30000000000000004)) repeat 0 0, url("http://subtlepatterns.subtlepatterns.netdna-cdn.com/patterns/bright_squares.png") repeat 0 0 transparent;
+}
+
+body {
+    margin: 0 auto;
+    width: 1000px;
+    height: 100%;
+    min-width: 1000px;
+    font: 14px/1.5 'Helvetica Neue',Tahoma;
+    color: #455469;
+}
+
+.header {
+    z-index: 10;
+    left: 0;
+    top: 0;
+    position: fixed;
+    width: 100%;
+    height: 68px;
+    font-size:  26px;
+    line-height: 68px;
+    color: #fff;
+    background: #2EA9DF;
+    font-family: @default-old-ie-heading-font-family;
+    font-weight: bold;
+    .box-shadow(0 0 4px 1px rgba(0,0,0,.4));
+
+    h2 {
+        width: 980px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+th, td {
+    padding: 0 8px;
+    text-align: left;
+}
+
+.main-container {
+    margin-top: 20px;
+}
+
+.aside {
+    position: fixed;
+    width: 180px;
+    border-top: none;
+    background: #f4f4f4;
+
+    .asideT {
+        height: 50px;
+        line-height: 50px;
+        text-indent: 1em;
+        color: #fff;
+        background: #455469;
+        font-size: 18px;
+        font-weight: normal;
+    }
+    .asideC {
+        background: #fff;
+        li {
+            padding: 10px 1em;
+            margin-bottom: 1px;
+            border-bottom: 1px solid #d6d6d6;
+            background: #f3f3f3;
+        }
+    }
+}
+
+
+.main {
+    background-color: #fff;
+    width: 780px;
+    padding-bottom: 20px;
+    margin-left: 200px;
+
+    .form {
+        margin-bottom: 30px;
+    }
+}
+.txt, textarea {
+    padding: 3px 6px 2px;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    border: 2px solid #ddd;
+}
+.form {
+    position: relative;
+    display: block;
+    .txt {
+        width: 220px;
+        height: 22px;
+        line-height: 22px;
+        border-radius: 0;
+    }
+    textarea {
+        width: 220px;
+    }
+}
+.fmd {
+    position: relative;
+    margin: 0 0 15px 0;
+    padding-left: 100px;
+    .label {
+        display: block;
+        width: 130px;
+        padding: 5px 0;
+        margin: 0 0 -31px -140px;
+        text-align: right;
+        white-space: nowrap;
+    }
+    .nm {
+        display: inline-block;
+        height: 31px;
+        line-height: 31px;
+        margin-right: 10px;
+        vertical-align: middle;
+    }
+}
+.nm {
+    input {
+        vertical-align: middle;
+        margin-right: 5px;
+    }
+}
+.btn {
+    position: relative;
+    display: inline-block;
+    height: 35px;
+    line-height: 35px;
+    min-width: 80px;
+    padding: 0 22px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    background: #25ab5e;
+
+    &:hover {
+        text-decoration: none;
+        background: #2CC36C;
+    }
+
+    &:active {
+        background: #455469;
+    }
+
+}
+.fuc {
+    color: #26AB52;
+}
+.tbl {
+    white-space: nowrap;
+    tr:nth-child(even) {
+        td {
+            background: #fcfcfc;
+        }
+    }
+    tr:hover {
+        td {
+            background: #f6f6f6;
+        }
+    }
+    th {
+        height: 40px;
+        line-height: 40px;
+        vertical-align: middle;
+        border: 1px solid #dee1e4;
+    }
+    td {
+        height: 45px;
+        line-height: 45px;
+        vertical-align: top;
+        border: 1px solid #dee1e4;
+        white-space: nowrap;
+        background: #fff;
+    }
+    input {
+        vertical-align: middle;
+    }
+    .fuc {
+        margin-right: 10px;
+    }
+}
+.cbox {
+    width: 36px;
+}
+
+.cp {
+    text-align: center;
+    margin-top: 14px;
+}

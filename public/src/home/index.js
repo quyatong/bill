@@ -1,4 +1,4 @@
-define(['ejs', '../common/ejson'], function (ejs, ejson) {
+define(['ejs','xdate', '../common/ejson'], function (ejs, xdate, ejson) {
     // 配置ejs开始结束标签
     ejs.open = '{%';
     ejs.close = '%}';
@@ -12,9 +12,11 @@ define(['ejs', '../common/ejson'], function (ejs, ejson) {
     };
 
     var enter = function () {
+        $('#time').val(new xdate().toString('yyyy-MM-dd'));
 
         // 添加用户
         $('#btn-add').click(function () {
+            $('#user-name').val('');
             $('#btn-add-area').show();
             $('#btn-add').hide();
         });
@@ -102,6 +104,29 @@ define(['ejs', '../common/ejson'], function (ejs, ejson) {
                 }
 
             });
+            var msgs = [];
+
+            if (!money) {
+                msgs.push('钱数');
+            }
+
+            if (!time) {
+                msgs.push('时间');
+            }
+
+            if (!comment) {
+                msgs.push('备注');
+            }
+
+            if (!customers.length) {
+                msgs.push('消费者');
+            }
+
+            if (msgs.length) {
+                alert('请填写' + msgs.join('、'));
+                return false;
+            }
+
 
             var params = {
                 outerId: outerMan,

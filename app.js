@@ -2,7 +2,10 @@
 /**
  * Module dependencies.
  */
+// 初始化生成模板
 require('./config/template');
+
+var lessMiddleware = require('less-middleware');
 var express = require('express');
 var routes = {
 	home: require('./routes/home'),
@@ -15,11 +18,10 @@ var path = require('path');
 var app = express();
 
 // all environments
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 9090);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-var lessMiddleware = require('less-middleware');
 
 app.use(express.favicon());
 app.use(express.logger('dev'));
@@ -27,6 +29,8 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(app.router);
+
+// less support
 app.use(lessMiddleware(__dirname + '/public'));
 app.use(express.static(__dirname + '/public'));
 
@@ -52,5 +56,5 @@ app.get('/user/remove/:id?', routes.user.remove);
 app.get('/user/edit/:id/:name', routes.user.edit);
 
 app.listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+    console.log('Express server listening on port ' + app.get('port'));
 });

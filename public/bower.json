@@ -1,6 +1,6 @@
 {
   "name": "bill",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "homepage": "https://github.com/quyatong/bill",
   "authors": [
     "quyatong <quyatong@baidu.com>"
@@ -15,9 +15,9 @@
     "test",
     "tests"
   ],
-  "devDependencies": {
-  	"ejs": "1.0.0",
-  	"est": "0.6.2",
-  	"underscore": "1.6.0"
+  "dependencies": {
+    "xdate": "~0.8.1",
+    "ejs": "~1.0.0",
+    "est": "https://github.com/ecomfe/est.git#~1.2.1"
   }
 }

@@ -35,11 +35,6 @@ require([
 			$routeProvider
 			.when('/', {
 				templateUrl: 'index.tmpl',
-				resolve: {
-					records: ['$http', function($http) {
-						return $http.get('/record/list')
-					}]
-				},
 				controller: 'index'
 			})
 			.otherwise({

@@ -61,22 +61,62 @@ record.list = function () {
             'records', 'users', 
             function (records, users) {
 
+                // 支出
+                var expents = clone(users);
+
+                // 收入
+                var incomes = clone(users)
+
+                _.each(expents, function (user) {
+                    user.summary = 0;
+                });
+
+                _.each(incomes, function (user) {
+                    user.summary = 0;
+                });
+
                 _.each(records, function (record) {
                     var customers = clone(users);
+                    var consumerNum = record.customers.length;
+                    var money = record.money;
+                    var avgPrice = money / consumerNum;
+
                     record.outerMan = _.find(users, function (user) {
                         return user._id + '' == record.outerId + '';
                     });
+
                     _.each(record.customers, function (customerId) {
+
                         _.each(customers, function (customer) {
                             if (customer._id + '' == customerId) {
+
                                 customer['consume'] = true;
+
+                                // 计算消费
+                                var user = _.findWhere(expents, {_id: customerId});
+                                user.summary = user.summary + avgPrice;
                             }
                         });
                     });
+
+                    if (record.outerMan) {
+                        var user = _.findWhere(incomes, {_id: record.outerMan._id});
+                        user.summary = user.summary - money;
+                    }
+
                     record.customers = customers;
                 });
+
+                // 支出 + 收入汇总
+                var summarys = incomes;
+                for (var i = 0; i < incomes.length; i++) {
+                    summarys[i].summary += expents[i].summary;
+                    summarys[i].summary.toFixed(2);
+                };
+
                 promise.resolve({
-                    records: records, 
+                    records: records,
+                    summarys: summarys,
                     users: users
                 });
             }
@@ -89,7 +129,10 @@ record.list = function () {
                 return console.error(err);
             }
 
-            records = _.each(records, function (item, index) {records[index] = item.toJSON();});
+            records = _.each(records, function (item, index) {
+                records[index] = item.toJSON();
+                records[index]._id = records[index]._id + '';
+            });
 
             ep.emit('records', records);
         });
@@ -101,7 +144,10 @@ record.list = function () {
                 return console.error(err);
             }
 
-            users = _.each(users, function (item, index) {users[index] = item.toJSON();});
+            users = _.each(users, function (item, index) {
+                users[index] = item.toJSON();
+                users[index]._id = users[index]._id + '';
+            });
            
             ep.emit('users', users);
         });

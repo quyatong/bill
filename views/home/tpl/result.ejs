@@ -1,0 +1,45 @@
+<table>
+    <thead>
+        <th class="first-col">出钱人</th>
+        <th>出钱数</th>
+        <th class="time-col">时间</th>
+        <th>备注</th>
+        {% for (var i = 0; i < users.length; i++)  {%}
+        <th>{%= users[i].name %}</th>
+        {% } %}
+        <th clss="last-col">操作</th>
+    </thead>
+    <tbody>
+        {% for (var i = 0; i < records.length; i++) { %}
+        <tr>
+        <td class="first-col">{%= (records[i].outerMan && records[i].outerMan.name) || '' %}</td>
+        <td>{%= records[i].money || ''%}</td>
+        <td class="time-col">{%= records[i].time || ''%}</td>
+        <td title="{%= records[i].comment || ''%}">{%= records[i].comment || '' %}</td>
+        {% for (var j = 0; j < records[i].customers.length; j++) { %}
+            {% if (records[i].customers[j].consume) {%}
+            <td class="user-consume">
+            </td>
+            {% } else { %}
+            <td></td>
+            {% } %}
+        {% } %}
+        <td class="last-col">
+            <span class="record-delete" value="{%= records[i]._id%}">删除</span>
+        </td>
+        </tr>
+        {% } %}
+        <tr>
+            <td class="first-col">汇总</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            {% for (var i = 0; i < summarys.length; i++) { %}
+            <td class="{% if (summarys[i].summary > 0) { %}expend{% } else if (summarys[i].summary < 0) {%}income{% } %}">
+            {%= summarys[i].summary%}
+            </td>
+            {% } %}
+            <td></td>
+        </tr>
+    </tbody>
+</table>

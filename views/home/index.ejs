@@ -1,6 +1,5 @@
-<%include header%>
+<%include ../common/header%>
 <link rel="stylesheet" type="text/css" href="/src/home/index.css">
-<br/> 
 
 <form id="bill-form" action="post">
     <table>
@@ -18,7 +17,7 @@
             <tr>
                 <td class="title">出钱数：</td>
                 <td class="content">
-                    <input id="money" type="number" /> 元
+                    <input id="money" type="number" step="0.01" /> 元
                 </td>
             </tr>
             <tr>
@@ -41,10 +40,10 @@
                     <%}%>
                     <div id="btn-add-area" style="display: none">
                         <input id="user-name" type="text"/>
-                        <button id="btn-add-confirm">确定</button>
-                        <button id="btn-add-cancel">取消</button>
+                        <input id="btn-add-confirm" type="button" value="确定">
+                        <input id="btn-add-cancel" type="button" value="取消" />
                     </div>
-                    <button id="btn-add">添加</button>
+                    <input id="btn-add" type="button" value="添加" />
                 </td>
             </tr>
             <tr>
@@ -68,9 +67,8 @@
 <%include tpl/result%>
 </script>
 
-<%include script%>
+<%include ../common/script%>
 
-<button class="btn">repaint</button>
 
 <script type="text/javascript">
     require(['src/home/index'], function (index) {
@@ -78,4 +76,4 @@
     });
 </script>
 
-<%include footer%>
+<%include ../common/footer%>
