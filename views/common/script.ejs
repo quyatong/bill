@@ -2,17 +2,20 @@
     require.config({
         baseUrl: '/',
         paths: {
+            angular: './src/lib/angular',
+            angularRoute: './src/lib/angular-route.min',
             underscore: './dep/underscore/underscore',
             ejs: './dep/ejs/ejs',
             xdate: './dep/xdate/src/xdate'
         },
-        packages: [{
-
-        }],
         shim: {
+            angular: {
+                exports: 'angular'
+            },
             ejs: {
                 exports: 'ejs'
-            }
+            },
+            angularRoute: ['angular']
         }
     });
 </script>

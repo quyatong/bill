@@ -1,19 +1,5 @@
 'use strict'
 
-require.config({
-	baseUrl: 'j/app/',
-	paths: {
-		angular: '/j/lib/angular',
-		angularRoute: '/j/lib/angular-route.min'
-	},
-	shim: {
-		angular: {
-			exports: 'angular'
-		},
-		angularRoute: ['angular']
-	}
-});
-
 require([
 	'angular',
 	'angularRoute',

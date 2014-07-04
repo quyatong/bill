@@ -11,10 +11,11 @@ var recordAction = require('../action/record');
  */
 module.exports.index = function(req, res) {
 
-    recordAction.list().then(function (data) {
-            res.render('home/index', data);
-        }
-    );
+    res.render('home');
+    // recordAction.list().then(function (data) {
+            
+    //     }
+    // );
 };
 
 /**
