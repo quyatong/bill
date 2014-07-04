@@ -24,5 +24,5 @@ module.exports.index = function(req, res) {
  * @param  {Object} res response
  */
 module.exports.tmpl = function(req, res) {
-	res.render('index/main');
+	res.render('home/main');
 };
