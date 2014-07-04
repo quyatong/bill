@@ -11,7 +11,7 @@ var recordAction = require('../action/record');
  */
 module.exports.index = function(req, res) {
 
-    res.render('home');
+    res.render('home/index');
     // recordAction.list().then(function (data) {
             
     //     }

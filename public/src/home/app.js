@@ -3,7 +3,7 @@
 require([
 	'angular',
 	'angularRoute',
-	'controllers/main'
+	'src/home/controllers/main'
 	], function(angular) {
 
 	var appName = 'app';
@@ -20,13 +20,13 @@ require([
 
 			$routeProvider
 			.when('/', {
-				templateUrl: 'index.tmpl',
+				templateUrl: 'home.tmpl',
 				resolve: {
 					records: ['$http', function($http) {
 						return $http.get('/record/list')
 					}]
 				},
-				controller: 'index'
+				controller: 'home'
 			})
 			.otherwise({
 				redirectTo: '/'

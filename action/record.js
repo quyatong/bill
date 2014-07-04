@@ -104,6 +104,10 @@ record.list = function () {
                         user.summary = user.summary - money;
                     }
 
+                    customers = customers.filter(function(customer) {
+                        return customer.consume;
+                    });
+
                     record.customers = customers;
                 });
 

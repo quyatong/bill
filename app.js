@@ -40,7 +40,7 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.home.index);
-app.get('/index.tmpl', routes.home.tmpl)
+app.get('/home.tmpl', routes.home.tmpl)
 
 
 app.get('/record/index', routes.record.index);
