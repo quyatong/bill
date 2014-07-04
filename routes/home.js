@@ -10,11 +10,34 @@ var recordAction = require('../action/record');
  * @param  {Object} res response
  */
 module.exports.index = function(req, res) {
+	var auth = req.headers['authorization']; 
+	if (auth) {
 
-    recordAction.list().then(function (data) {
-            res.render('home/index', data);
-        }
-    );
+		var tmp = auth.split(' ');   
+        var buf = new Buffer(tmp[1], 'base64');  
+        var plain_auth = buf.toString();        
+        var creds = plain_auth.split(':');       
+        var username = creds[0]; 
+        var password = creds[1]; 
+
+        if((username == 'gis') && (password == 'pwd')) {    
+			recordAction.list().then(function (data) {
+		            res.render('home/index', data);
+		        }
+		    );
+        } else { 
+            res.statusCode = 401; 
+        	res.setHeader('WWW-Authenticate', 'Basic realm="auth-server"'); 
+        	res.end('<html><body>Need your passport...</body></html>');  
+        } 
+
+	}
+	else {
+		res.statusCode = 401; 
+        res.setHeader('WWW-Authenticate', 'Basic realm="auth-server"'); 
+        res.end('<html><body>Need your passport...</body></html>'); 
+	}
+
 };
 
 /**
