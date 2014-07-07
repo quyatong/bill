@@ -6,19 +6,13 @@
 .nm input {vertical-align:middle;margin-right:5px;}
 .nm .close-btn {right:4px;top:8px;position:absolute;}
 
-.nmicon {vertical-align:middle;margin-right:10px;display:inline-block;width:24px;height:24px;cursor:pointer;}
+.nmicon {vertical-align:middle;margin-right:10px;display:inline-block;width:60px;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .nmicon img {vertical-align:top;width:100%;height:100%;}
-
-.drop {display:inline-block;position:relative;min-width:30px;cursor:pointer;}
-.drop-btn {vertical-align:middle;width:16px;height:16px;background:url(//s4.ksyun.com/i/2/133.gif) no-repeat center;}
-.drop ul {visibility:hidden;z-index:3;top:0;left:26px;position:absolute;width:105px;padding:5px;border:1px solid #d9d9d9;text-align:left;background:url(//s4.ksyun.com/i/4/236.png) repeat;opacity:0;white-space:normal;box-shadow:0 1px 1px 1px rgba(0,0,0,.15);}
-.drop:hover ul {visibility:visible;opacity:1;}
-.drop ul li {vertical-align:top;margin:5px;}
 
 .tblList {overflow:auto;}
 .tbl input {vertical-align:middle;}
 .tbl .fuc {margin-right:10px;}
 .tbl .em {color:#F6E2FB;background-color:#C9AF00!important;}
 .tbl .em2 {color:red;background-color:#33FB57!important;}
-.tbl .drop {margin-left:-5px;height:24px;line-height:24px;}
+.tbl .drop {margin-left:-10px;height:24px;line-height:24px;}
 .tbl .cctms {overflow:visible;}

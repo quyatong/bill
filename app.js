@@ -40,8 +40,8 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.home.index);
-app.get('/home.tmpl', routes.home.tmpl)
-
+app.get('/home.tmpl', routes.home.tmpl);
+app.get('/editRecord.tmpl', routes.home.editRecord);
 
 app.get('/record/index', routes.record.index);
 app.get('/record/list', routes.record.list);
@@ -49,6 +49,7 @@ app.get('/record/list', routes.record.list);
 app.get('/record', routes.record.index);
 app.get('/record/add', routes.record.add);
 app.get('/record/remove/:id?', routes.record.remove);
+app.post('/record/edit', routes.record.edit);
 
 app.get('/user/list', routes.user.list);
 app.get('/user/add/:name?', routes.user.add);

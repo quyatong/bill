@@ -1,4 +1,4 @@
-<form class="form" name="newRecord" ng-submit="addRecord($event)" novalidate>
+<form class="form" name="newRecord" ng-submit="updateRecord($event)" novalidate>
 	<div class="fmd">
 		<label class="label" for="name">出钱人：</label>
 		<select id="name" name="name" value="" ng-model="newRecordData.name" ng-options="usr.name for usr in data.users">
@@ -48,15 +48,15 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="record in data.records" ng-init="showcts = record.customers.slice(0, 5)">
+			<tr ng-repeat="record in data.records" ng-init="showcts = record.customers.slice(0, 3)">
 				<td class="csize">{{record.outerMan.name || ''}}</td>
 				<td class="csize">{{record.money || 0}}</td>
 				<td class="csize">{{record.time}}</td>
-				<td class="cctms" ng-init="morects = record.customers.slice(5)">
-					<div class="nmicon" ng-repeat="customer in showcts" title="{{customer.name}}"><img ng-src="{{customer.avtSrc || avtSrc}}"></div>
+				<td class="cctms" ng-init="morects = record.customers.slice(3)">
+					<div class="nmicon" ng-repeat="customer in showcts" title="{{customer.name}}">{{customer.name}}</div>
 					<div class="drop" ng-if="morects.length">
 						<button class="drop-btn"></button>
-						<ul><li class="nmicon" ng-repeat="customer in morects" title="{{customer.name}}"><img ng-src="{{customer.avtSrc || avtSrc}}"></li></ul>
+						<ul><li class="nmicon" ng-repeat="customer in morects" title="{{customer.name}}">{{customer.name}}</li></ul>
 					</div>
 				</td>
 				<td class="csize3" title="{{record.comment || ''}}">{{record.comment || ''}}</td>

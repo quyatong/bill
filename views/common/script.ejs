@@ -2,8 +2,10 @@
     require.config({
         baseUrl: '/',
         paths: {
-            angular: './src/lib/angular',
+            angular: './src/lib/angular.min',
             angularRoute: './src/lib/angular-route.min',
+            ui: './src/lib/ui-bootstrap-custom-0.10.0.min',
+            uitpl: './src/lib/ui-bootstrap-custom-tpls-0.10.0.min',
             underscore: './dep/underscore/underscore',
             ejs: './dep/ejs/ejs',
             xdate: './dep/xdate/src/xdate'
@@ -15,7 +17,9 @@
             ejs: {
                 exports: 'ejs'
             },
-            angularRoute: ['angular']
+            angularRoute: ['angular'],
+            uitpl: ['angular'],
+            ui: ['uitpl']
         }
     });
 </script>

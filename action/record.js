@@ -45,6 +45,37 @@ record.save = function (outerId, time, money, customers, comment) {
     return promise.promise;
 };
 
+/**
+ * 记录更新
+ *
+ * @param  {string} id        record id
+ * @param  {string} outerId   outerman id
+ * @param  {string} time      time
+ * @param  {string} money     money
+ * @param  {Array}  customers 消费者数组
+ * @param  {string} comment   备注
+ * @return {Promise}          Promise
+ */
+record.update = function (id, outerId, time, money, customers, comment) {
+    var promise = when.defer();
+
+    Record.update({_id: id}, {
+        outerId: outerId,
+        time: time,
+        money: money,
+        customers: customers,
+        comment: comment
+    }, function (err) {
+        if (err) {
+            return console.error(err);
+        }
+        record.list().then(function(data) {
+            promise.resolve(data);
+        });
+    });
+
+    return promise.promise;
+};
 
 /**
  * 列出全部记录

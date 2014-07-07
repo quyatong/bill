@@ -3,18 +3,19 @@
 define([
 	'angular',
 	'xdate',
-	'src/common/ejson'
+	'src/common/ejson',
+	'ui'
 	],
 	function(angular, xdate, ejson) {
 
-	var ctrls = angular.module('ctrls', []);
+	var ctrls = angular.module('ctrls', ['ui.bootstrap']);
 
 	ctrls.controller('home', [
 		'$scope',
 		'records',
-		'$filter',
 		'$http',
-		function($scope, records, $filter, $http) {
+		'$modal',
+		function($scope, records, $http, $modal) {
 
 			$scope.avtSrc = '//s4.ksyun.com/i/4/185.png';
 
@@ -36,22 +37,25 @@ define([
 				!$scope.$$phase && $scope.$digest();
 			};
 
+			var doUpdateUI = function(data) {
+				$scope.data = data;
+				users = data.users;
+				newRecordData.name = users[0];
+				newRecordData.money = '';
+				newRecordData.comment = '';
+				$scope.customers = angular.copy(users);
+				$scope.showErr = false;
+				doDig();
+			};
+
 			var refreshResult = function () {
 
-				ejson.get('/record/list').then(function (data) {
-					$scope.data = data;
-					users = data.users;
-					newRecordData.name = users[0];
-					newRecordData.money = '';
-					newRecordData.comment = '';
-					$scope.customers = angular.copy(users);
-					$scope.showErr = false;
-					doDig();
-				});
+				ejson.get('/record/list').then(doUpdateUI);
 
 			};
 
-			$scope.addRecord = function(e) {
+			// 新增
+			$scope.updateRecord = function(e) {
 				e.preventDefault();
 				$scope.showErr = true;
 				var newCustomers = [];
@@ -60,7 +64,6 @@ define([
 						newCustomers.push(ctm._id);
 					}
 				});
-				$filter('filter')($scope.customers, true, 'checked');
 				$scope.newRecordData.customers = newCustomers;
 				if ($scope.newRecord.$invalid || !newCustomers.length) {
 					return;
@@ -85,7 +88,72 @@ define([
 			};
 
 			$scope.editRecord = function(record) {
+				record = angular.copy(record);
+				$modal.open({
+					templateUrl: 'editRecord.tmpl',
+					scope: $scope,
+					controller: [
+						'$scope', '$modalInstance',
+						function(scope, modalInstance) {
+							
+							angular.forEach($scope.data.users, function(usr) {
+								if (usr._id == record.outerMan._id) {
+									record.outerMan = usr;
+								}
+							});
+							record.money -= 0;
+							scope.record = record;
 
+							var customers = $scope.customers;
+
+							angular.forEach(customers, function(customer) {
+								angular.forEach(record.customers, function(rcustomer) {
+									if (rcustomer._id == customer._id) {
+										customer.checked = true;
+									}
+								});
+							});
+
+							scope.customers = customers;
+
+							scope.cancel = function () {
+								modalInstance.dismiss('cancel');
+							};
+
+							// 修改记录
+							scope.updateRecord = function(e) {
+								e.preventDefault();
+								scope.showErr = true;
+								var newCustomers = [];
+								angular.forEach(scope.customers, function(ctm) {
+									if (ctm.checked) {
+										newCustomers.push(ctm._id);
+									}
+								});
+								scope.checkedcustomers = newCustomers;
+								if (scope.editRecord.$invalid || !newCustomers.length) {
+									return;
+								}
+								
+								var params = {
+									id: record._id,
+									outerId: record.outerMan._id,
+									money: record.money,
+									time: record.time,
+									comment: record.comment,
+									customers: JSON.stringify(newCustomers)
+								};
+
+								ejson.post('/record/edit', {data: params}).then(function(res) {
+									modalInstance.close();
+									doUpdateUI(res);
+								});
+
+							};
+
+						}
+					]
+				});
 			};
 
 			$scope.removeUsr = function(usr) {

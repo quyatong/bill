@@ -27,3 +27,7 @@ module.exports.index = function(req, res) {
 module.exports.tmpl = function(req, res) {
 	res.render('home/main');
 };
+
+module.exports.editRecord = function(req, res) {
+	res.render('home/editRecord');
+};
