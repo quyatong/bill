@@ -1,0 +1,79 @@
+<form class="form" name="newRecord" ng-submit="updateRecord($event)" novalidate>
+	<div class="fmd">
+		<label class="label" for="name">出钱人：</label>
+		<select id="name" name="name" value="" ng-model="newRecordData.name" ng-options="usr.name for usr in data.users">
+		</select>
+	</div>
+	<div class="fmd" ng-class="{fmd_err:newRecord.time.$invalid&&showErr}">
+		<label class="label" for="time">日&emsp;期：</label>
+		<input type="date" id="time" name="time" class="txt" ng-model="newRecordData.time" required>
+	</div>
+	<div class="fmd" ng-class="{fmd_err:newRecord.money.$invalid&&showErr}">
+		<label class="label" for="money">钱&emsp;数：</label>
+		<input type="number" id="money" name="money" class="txt" placeholder="花的大把的钱" ng-model="newRecordData.money" required min="1">
+	</div>
+	<div class="fmd">
+		<label class="label" for="comment">备&emsp;注：</label>
+		<textarea id="comment" name="comment" placeholder="干了个啥子" ng-model="newRecordData.comment"></textarea>
+	</div>
+	<div class="fmd" ng-class="{fmd_err:newRecordData.customers.length < 1&&showErr}" csstxt="请勾选消费者">
+		<label class="label">消费者：</label>
+		<label class="nm" ng-repeat="usr in customers" title="{{usr.name}}"><input type="checkbox" ng-model="usr.checked">{{usr.name}}<a href="javascript:;" class="close-btn" title="删除此人" ng-click="removeUsr(usr)">x</a></label>
+		<button type="button" class="btn" ng-click="showAddUsr=true" title="新加用户" ng-hide="showAddUsr">＋</button>
+		<div class="innerForm" ng-if="showAddUsr">
+			<div class="fmd" ng-class="{fmd_err:!newUsr&&showErr}">
+				<label class="label" for="newUsr">姓&emsp;名：</label>
+				<input type="text" id="newUsr" name="newUsr" class="txt" placeholder="新人报上名来" ng-model="newUsr">
+			</div>
+			<div class="fmd btns">
+				<button type="button" class="btn submit-btn" ng-click="addUser(this)">提交</button>
+				<button type="button" class="btn btn_minor" ng-click="$parent.showAddUsr=false">取消</button>
+			</div>
+		</div>
+	</div>
+	<div class="fmd">
+		<button type="submit" class="btn submit-btn">赶快提交</button>
+	</div>
+</form>
+<div class="tblList">
+	<table class="tbl">
+		<thead>
+			<tr>
+				<th class="csize">出钱人</th>
+				<th class="csize">钱数</th>
+				<th class="csize">时间</th>
+				<th>消费者</th>
+				<th class="csize3">备注</th>
+				<th class="csize">操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="record in data.records" ng-init="showcts = record.customers.slice(0, 3)">
+				<td class="csize">{{record.outerMan.name || ''}}</td>
+				<td class="csize">{{record.money || 0}}</td>
+				<td class="csize">{{record.time}}</td>
+				<td class="cctms" ng-init="morects = record.customers.slice(3)">
+					<div class="nmicon" ng-repeat="customer in showcts" title="{{customer.name}}">{{customer.name}}</div>
+					<div class="drop" ng-if="morects.length">
+						<button class="drop-btn"></button>
+						<ul><li class="nmicon" ng-repeat="customer in morects" title="{{customer.name}}">{{customer.name}}</li></ul>
+					</div>
+				</td>
+				<td class="csize3" title="{{record.comment || ''}}">{{record.comment || ''}}</td>
+				<td class="csize"><a href="javascript:;" class="fuc" ng-click="editRecord(record)">编辑</a><a href="javascript:;" class="fuc" ng-click="removeRecord(record)">删除</a></td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<th>合计</th>
+				<th colspan="2">姓名</th>
+				<th colspan="3">金额</th>
+			</tr>
+			<tr ng-repeat="usr in data.summarys">
+				<td>{{$index+1}}</td>
+				<td colspan="2">{{usr.name}}</td>
+				<td colspan="3" ng-class="{em:usr.summary>0,em2:usr.summary<0}" ng-bind="usr.summary"></td>
+			</tr>
+		</tfoot>
+	</table>
+</div>

@@ -1,23 +1,9 @@
 'use strict'
 
-require.config({
-	baseUrl: 'j/app/',
-	paths: {
-		angular: '/j/lib/angular',
-		angularRoute: '/j/lib/angular-route.min'
-	},
-	shim: {
-		angular: {
-			exports: 'angular'
-		},
-		angularRoute: ['angular']
-	}
-});
-
 require([
 	'angular',
 	'angularRoute',
-	'controllers/main'
+	'src/home/controllers/main'
 	], function(angular) {
 
 	var appName = 'app';
@@ -34,8 +20,13 @@ require([
 
 			$routeProvider
 			.when('/', {
-				templateUrl: 'index.tmpl',
-				controller: 'index'
+				templateUrl: 'home.tmpl',
+				resolve: {
+					records: ['$http', function($http) {
+						return $http.get('/record/list')
+					}]
+				},
+				controller: 'home'
 			})
 			.otherwise({
 				redirectTo: '/'

@@ -1,0 +1,32 @@
+<a class="modal-close-btn" title="关闭" ng-click="cancel()"></a>
+<div class="modal-header">
+	<h3 class="modal-title">修改记录</h3>
+</div>
+<div class="modal-body">
+		<form class="form" name="editRecord" ng-submit="updateRecord($event)" novalidate>
+			<div class="fmd">
+				<label class="label" for="name">出钱人：</label>
+				<select id="name" name="name" value="" ng-model="record.outerMan" ng-options="usr.name for usr in data.users">
+				</select>
+			</div>
+			<div class="fmd" ng-class="{fmd_err:editRecord.time.$invalid&&showErr}">
+				<label class="label" for="time">日&emsp;期：</label>
+				<input type="date" id="time" name="time" class="txt" ng-model="record.time" required>
+			</div>
+			<div class="fmd" ng-class="{fmd_err:editRecord.money.$invalid&&showErr}">
+				<label class="label" for="money">钱&emsp;数：</label>
+				<input type="number" id="money" name="money" class="txt" placeholder="花的大把的钱" ng-model="record.money" required min="1">
+			</div>
+			<div class="fmd">
+				<label class="label" for="comment">备&emsp;注：</label>
+				<textarea id="comment" name="comment" placeholder="干了个啥子" ng-model="record.comment"></textarea>
+			</div>
+			<div class="fmd" ng-class="{fmd_err:checkedcustomers.length < 1&&showErr}" csstxt="请勾选消费者">
+				<label class="label">消费者：</label>
+				<label class="nm" ng-repeat="usr in customers" title="{{usr.name}}"><input type="checkbox" ng-model="usr.checked">{{usr.name}}</label>
+			</div>
+			<div class="fmd">
+				<button type="submit" class="btn submit-btn">赶快提交</button>
+			</div>
+		</form>
+</div>

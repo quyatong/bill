@@ -1,0 +1,18 @@
+
+.main .form {margin-bottom:30px;}
+
+.fmd .nm {position:relative;vertical-align:middle;display:inline-block;width:106px;height:31px;line-height:31px;margin:0 5px 5px 0;padding:0 25px 0 5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border:1px solid transparent;}
+.fmd .nm:hover {background:#eee;border-color:#ccc;}
+.nm input {vertical-align:middle;margin-right:5px;}
+.nm .close-btn {right:4px;top:8px;position:absolute;}
+
+.nmicon {vertical-align:middle;margin-right:10px;display:inline-block;width:60px;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.nmicon img {vertical-align:top;width:100%;height:100%;}
+
+.tblList {overflow:auto;}
+.tbl input {vertical-align:middle;}
+.tbl .fuc {margin-right:10px;}
+.tbl .em {color:#F6E2FB;background-color:#C9AF00!important;}
+.tbl .em2 {color:red;background-color:#33FB57!important;}
+.tbl .drop {margin-left:-10px;height:24px;line-height:24px;}
+.tbl .cctms {overflow:visible;}
