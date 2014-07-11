@@ -104,9 +104,10 @@ define([
 							record.money -= 0;
 							scope.record = record;
 
-							var customers = $scope.customers;
+							var customers = angular.copy($scope.customers);
 
 							angular.forEach(customers, function(customer) {
+								customer.checked = false;
 								angular.forEach(record.customers, function(rcustomer) {
 									if (rcustomer._id == customer._id) {
 										customer.checked = true;
