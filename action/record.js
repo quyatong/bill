@@ -158,7 +158,7 @@ record.list = function () {
         );
 
         // 查询所有records
-        Record.find({}, {}, {sort: [['_id', -1]]}, function (err, records) {
+        Record.find({}, function (err, records) {
 
             if (err) {
                 return console.error(err);
