@@ -146,7 +146,7 @@ record.list = function () {
                 var summarys = incomes;
                 for (var i = 0; i < incomes.length; i++) {
                     summarys[i].summary += expents[i].summary;
-                    summarys[i].summary.toFixed(2);
+                    summarys[i].summary = summarys[i].summary.toFixed(2);
                 };
 
                 promise.resolve({
